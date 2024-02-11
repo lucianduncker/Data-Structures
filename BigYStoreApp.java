@@ -6,8 +6,8 @@ import java.awt.event.ActionListener;
 
 public class BigYStoreApp extends JFrame implements ActionListener {
     private JComboBox<String> sizeList;
-    private JCheckBox topping1, topping2, topping3, extraCheese, mixedPeppers, mozzarella;
-    private JLabel topping1Label, topping2Label, topping3Label, extraCheeseLabel, mixedPeppersLabel, mozzarellaLabel;
+    private JCheckBox mushrooms, olives, sausages, extraCheese, mixedPeppers, mozzarella;
+    private JLabel mushroomslabel, oliveslabel, sausageslabel, extraCheeseLabel, mixedPeppersLabel, mozzarellaLabel;
     private JButton calculateButton;
     private JLabel resultLabel;
     private JRadioButton Margherita;
@@ -15,13 +15,13 @@ public class BigYStoreApp extends JFrame implements ActionListener {
     private JRadioButton Vegetarian;
     private JRadioButton BBQChicken;
     private ButtonGroup G1;
-    private ImageIcon margheritaImage, pepperoniImage, vegetarianImage, bbqChickenImage;
-    private JLabel margheritaImageLabel, pepperoniImageLabel, vegetarianImageLabel, bbqChickenImageLabel;
+    private ImageIcon margheritaImage, pepperoniImage, vegetarianImage, bbqChickenImage, bigYlogo;
+    private JLabel margheritaImageLabel, pepperoniImageLabel, vegetarianImageLabel, bbqChickenImageLabel, bigYlogoLabel;
     private JLabel pizzaImageLabel;
 
     public BigYStoreApp() {
         setTitle("BigY Store Pizza Order");
-        setSize(700, 700);  // Increased height to accommodate additional toppings
+        setSize(600, 600);  // Increased height to accommodate additional toppings
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
 
@@ -37,10 +37,10 @@ public class BigYStoreApp extends JFrame implements ActionListener {
         Vegetarian.setText("Vegetarian");
         BBQChicken.setText("BBQ Chicken");
 
-        Margherita.setBounds(50, 20, 120, 30);
-        Pepperoni.setBounds(180, 20, 120, 30);
-        Vegetarian.setBounds(310, 20, 120, 30);
-        BBQChicken.setBounds(440, 20, 120, 30);
+        Margherita.setBounds(50, 200, 120, 30);
+        Pepperoni.setBounds(180, 200, 120, 30);
+        BBQChicken.setBounds(440, 200, 120, 30);
+        Vegetarian.setBounds(310,200,120,30);
         add(Margherita);
         add(Pepperoni);
         add(Vegetarian);
@@ -61,23 +61,27 @@ public class BigYStoreApp extends JFrame implements ActionListener {
         pepperoniImage = new ImageIcon("pepperoni.jpg");
         vegetarianImage = new ImageIcon("Veggie.jpg");
         bbqChickenImage = new ImageIcon("BBQchicken.jpg");
+        bigYlogo = new ImageIcon("BigYLogo.jpg");
     
         margheritaImageLabel = new JLabel(margheritaImage);
-        margheritaImageLabel.setBounds(50, 45, 120, 120);
+        margheritaImageLabel.setBounds(50, 230, 120, 120);
         add(margheritaImageLabel);
     
         pepperoniImageLabel = new JLabel(pepperoniImage);
-        pepperoniImageLabel.setBounds(180, 45, 120, 120);
+        pepperoniImageLabel.setBounds(180, 230, 120, 120);
         add(pepperoniImageLabel);
     
         vegetarianImageLabel = new JLabel(vegetarianImage);
-        vegetarianImageLabel.setBounds(310, 45, 120, 120);
+        vegetarianImageLabel.setBounds(310, 230, 120, 120);
         add(vegetarianImageLabel);
     
         bbqChickenImageLabel = new JLabel(bbqChickenImage);
-        bbqChickenImageLabel.setBounds(440, 45, 120, 120);
+        bbqChickenImageLabel.setBounds(440, 230, 120, 120);
         add(bbqChickenImageLabel);
 
+        bigYlogoLabel = new JLabel(bigYlogo);
+        bigYlogoLabel.setBounds(200,0,256,137);
+        add(bigYlogoLabel);
         
 
         String[] sizeOptions = {"Small ($5)", "Medium ($10)", "Large ($15)", "Super ($20)"};
@@ -86,64 +90,64 @@ public class BigYStoreApp extends JFrame implements ActionListener {
         add(sizeList);
 
         // Toppings Selection
-        topping1 = new JCheckBox("Mushrooms");
-        topping1.setBounds(50, 200, 100, 30);
-        add(topping1);
+        mushrooms = new JCheckBox("Mushrooms");
+        mushrooms.setBounds(50, 350, 100, 30);
+        add(mushrooms);
 
-        topping1Label = new JLabel("+$0.50");
-        topping1Label.setBounds(160, 200, 50, 30);
-        add(topping1Label);
+        mushroomslabel = new JLabel("+$0.50");
+        mushroomslabel.setBounds(160, 350, 50, 30);
+        add(mushroomslabel);
 
-        topping2 = new JCheckBox("Olives");
-        topping2.setBounds(50, 240, 100, 30);
-        add(topping2);
+        olives = new JCheckBox("Olives");
+        olives.setBounds(50, 380, 100, 30);
+        add(olives);
 
-        topping2Label = new JLabel("+$0.50");
-        topping2Label.setBounds(160, 240, 50, 30);
-        add(topping2Label);
+        oliveslabel = new JLabel("+$0.50");
+        oliveslabel.setBounds(160, 380, 50, 30);
+        add(oliveslabel);
 
-        topping3 = new JCheckBox("Sausage");
-        topping3.setBounds(50, 280, 100, 30);
-        add(topping3);
+        sausages = new JCheckBox("Sausage");
+        sausages.setBounds(50, 410, 100, 30);
+        add(sausages);
 
-        topping3Label = new JLabel("+$0.50");
-        topping3Label.setBounds(160, 280, 50, 30);
-        add(topping3Label);
+        sausageslabel = new JLabel("+$0.50");
+        sausageslabel.setBounds(160, 410, 50, 30);
+        add(sausageslabel);
 
         extraCheese = new JCheckBox("Extra Cheese");
-        extraCheese.setBounds(50, 320, 150, 30);
+        extraCheese.setBounds(50, 440, 150, 30);
         add(extraCheese);
 
         extraCheeseLabel = new JLabel("No extra cost");
-        extraCheeseLabel.setBounds(200, 320, 100, 30);
+        extraCheeseLabel.setBounds(200, 440, 100, 30);
         add(extraCheeseLabel);
 
         mixedPeppers = new JCheckBox("Mixed Peppers");
-        mixedPeppers.setBounds(50, 360, 150, 30);
+        mixedPeppers.setBounds(50, 470, 150, 30);
         add(mixedPeppers);
 
         mixedPeppersLabel = new JLabel("+$0.50");
-        mixedPeppersLabel.setBounds(200, 360, 50, 30);
+        mixedPeppersLabel.setBounds(200, 470, 50, 30);
         add(mixedPeppersLabel);
 
         mozzarella = new JCheckBox("Mozzarella");
-        mozzarella.setBounds(50, 400, 150, 30);
+        mozzarella.setBounds(50, 500, 150, 30);
         add(mozzarella);
 
         mozzarellaLabel = new JLabel("+$0.50");
-        mozzarellaLabel.setBounds(200, 400, 50, 30);
+        mozzarellaLabel.setBounds(200, 500, 50, 30);
         add(mozzarellaLabel);
 
         // Calculate Button
-        calculateButton = new JButton("Calculate Price");
-        calculateButton.setBounds(50, 440, 150, 30);
+        calculateButton = new JButton("Checkout");
+        calculateButton.setBounds(50, 530, 150, 30);
         calculateButton.addActionListener(this);
         add(calculateButton);
 
         // Result Label
-        resultLabel = new JLabel("Total Price: ");
-        resultLabel.setBounds(50, 480, 400, 30);
-        add(resultLabel);
+        // resultLabel = new JLabel("Total Price: ");
+        // resultLabel.setBounds(50, 480, 400, 30);
+        // add(resultLabel);
         
         
         
@@ -181,9 +185,9 @@ public class BigYStoreApp extends JFrame implements ActionListener {
         // Get selected pizza, size, and toppings
         String selectedPizza = getSelectedPizza();
         String selectedSize = (String) sizeList.getSelectedItem();
-        boolean hasTopping1 = topping1.isSelected();
-        boolean hasTopping2 = topping2.isSelected();
-        boolean hasTopping3 = topping3.isSelected();
+        boolean hasmushrooms = mushrooms.isSelected();
+        boolean hasolives = olives.isSelected();
+        boolean hassausages = sausages.isSelected();
         boolean hasExtraCheese = extraCheese.isSelected();
         boolean hasMixedPeppers = mixedPeppers.isSelected();
         boolean hasMozzarella = mozzarella.isSelected();
@@ -210,8 +214,27 @@ public class BigYStoreApp extends JFrame implements ActionListener {
         
 
         // Calculate additional toppings cost
-        int selectedToppingsCount = (hasTopping1 ? 1 : 0) + (hasTopping2 ? 1 : 0) + (hasTopping3 ? 1 : 0) +
-        (hasExtraCheese ? 1 : 0) + (hasMixedPeppers ? 1 : 0) + (hasMozzarella ? 1 : 0);
+        int selectedToppingsCount = 0; // Initialize the count of selected toppings to 0
+
+        // Check each topping individually and increase the count if its selected
+        if (hasmushrooms) {
+            selectedToppingsCount++;
+        }
+        if (hasolives) {
+            selectedToppingsCount++;
+        }
+        if (hassausages) {
+            selectedToppingsCount++;
+        }
+        if (hasExtraCheese) {
+            selectedToppingsCount++;
+        }
+        if (hasMixedPeppers) {
+            selectedToppingsCount++;
+        }
+        if (hasMozzarella) {
+            selectedToppingsCount++;
+        }
 
         // Ensure that no more than three toppings are selected
         if (selectedToppingsCount > 3) {
@@ -235,9 +258,13 @@ public class BigYStoreApp extends JFrame implements ActionListener {
         
          // Display the result
         double totalCost = basePrice + toppingsCost;
-        String resultText = "Total Price for " + selectedSize + " " + selectedPizza + " with toppings: $" + totalCost;
-        resultLabel.setText(resultText);
+        // String resultText = "Total Price for " + selectedSize + " " + selectedPizza + " with toppings: $" + totalCost;
+        // resultLabel.setText(resultText);
+        double tax = totalCost * .0625;
+        double finalPrice = totalCost + tax;
 
+        JOptionPane.showMessageDialog(this, "Subtotal for " + selectedSize + " " + selectedPizza + " with toppings: $" + totalCost + "\nTax: " + tax + "\nTotal: " + finalPrice, "Checkout", JOptionPane.PLAIN_MESSAGE);
+        
         // Update pizza image based on selected pizza type
         updatePizzaImage(selectedPizza);
     }
