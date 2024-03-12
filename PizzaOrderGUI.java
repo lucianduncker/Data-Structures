@@ -10,6 +10,7 @@ public class PizzaOrderGUI extends JFrame {
     private JTextField[] toppingFields;
     private JTextField deliveryAddressField;
     private JTextArea resultArea;
+    private JCheckBox deliveryCheckbox;
 
     public PizzaOrderGUI() {
         super("Pizza Order");
@@ -40,7 +41,7 @@ public class PizzaOrderGUI extends JFrame {
         }
 
         JPanel deliveryPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JCheckBox deliveryCheckbox = new JCheckBox("Delivery");
+        deliveryCheckbox = new JCheckBox("Delivery");
         deliveryAddressField = new JTextField(20);
         deliveryAddressField.setEnabled(false);
         deliveryCheckbox.addActionListener(new ActionListener() {
@@ -58,61 +59,10 @@ public class PizzaOrderGUI extends JFrame {
 
         orderButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String[] toppings = new String[MAX_TOPPINGS];
-                int numToppings = 0;
-                for (int i = 0; i < MAX_TOPPINGS; i++) {
-                    if (!toppingFields[i].getText().isEmpty()) {
-                        toppings[numToppings++] = toppingFields[i].getText();
-                    }
-                }
-
-                if (numToppings == 0) {
-                    JOptionPane.showMessageDialog(PizzaOrderGUI.this,
-                            "Please enter at least one topping.",
-                            "Error",
-                            JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                String deliveryAddress = "";
-                if (deliveryCheckbox.isSelected()) {
-                    deliveryAddress = deliveryAddressField.getText().trim();
-                    if (deliveryAddress.isEmpty()) {
-                        JOptionPane.showMessageDialog(PizzaOrderGUI.this,
-                                "Please enter a delivery address.",
-                                "Error",
-                                JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                }
-
-                StringBuilder orderDetails = new StringBuilder();
-                orderDetails.append("Pizza Toppings: ");
-                for (int i = 0; i < numToppings; i++) {
-                    orderDetails.append(toppings[i]);
-                    if (i < numToppings - 1) {
-                        orderDetails.append(", ");
-                    }
-                }
-
-                double price = 14 + (2 * numToppings);
-                orderDetails.append("\nPrice: $").append(price);
-
-                if (deliveryCheckbox.isSelected()) {
-                    double deliveryFee = price > 18 ? 3 : 5;
-                    orderDetails.append("\nDelivery Address: ").append(deliveryAddress);
-                    orderDetails.append("\nDelivery Fee: $").append(deliveryFee);
-                    price += deliveryFee;
-                }
-
-                resultArea.setText(orderDetails.toString());
-                JOptionPane.showMessageDialog(PizzaOrderGUI.this,
-                        "Order Placed!\nTotal Price: $" + price,
-                        "Success",
-                        JOptionPane.INFORMATION_MESSAGE);
+                // Handle the order button click event
+                placeOrder();
             }
         });
-
 
         mainPanel.add(logoPanel); // Add the logo panel to the main panel
         mainPanel.add(toppingPanel);
@@ -127,7 +77,68 @@ public class PizzaOrderGUI extends JFrame {
         setVisible(true);
     }
 
+    // Method to handle placing the order
+    private void placeOrder() {
+        String[] toppings = new String[MAX_TOPPINGS];
+        int numToppings = 0;
+        for (int i = 0; i < MAX_TOPPINGS; i++) {
+            if (!toppingFields[i].getText().isEmpty()) {
+                toppings[numToppings++] = toppingFields[i].getText();
+            }
+        }
+
+        if (numToppings == 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Please enter at least one topping.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String deliveryAddress = "";
+        if (deliveryCheckbox.isSelected()) {
+            deliveryAddress = deliveryAddressField.getText().trim();
+            if (deliveryAddress.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Please enter a delivery address.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
+        StringBuilder orderDetails = new StringBuilder();
+        orderDetails.append("Pizza Toppings: ");
+        for (int i = 0; i < numToppings; i++) {
+            orderDetails.append(toppings[i]);
+            if (i < numToppings - 1) {
+                orderDetails.append(", ");
+            }
+        }
+
+        double price = 14 + (2 * numToppings);
+        orderDetails.append("\nPrice: $").append(price);
+
+        if (deliveryCheckbox.isSelected()) {
+            double deliveryFee = price > 18 ? 3 : 5;
+            orderDetails.append("\nDelivery Address: ").append(deliveryAddress);
+            orderDetails.append("\nDelivery Fee: $").append(deliveryFee);
+            price += deliveryFee;
+        }
+
+        resultArea.setText(orderDetails.toString());
+        JOptionPane.showMessageDialog(this,
+                "Order Placed!\nTotal Price: $" + price,
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+    }
+
     public static void main(String[] args) {
-        new PizzaOrderGUI();
+        // Create and display the pizza order GUI
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new PizzaOrderGUI();
+            }
+        });
     }
 }
